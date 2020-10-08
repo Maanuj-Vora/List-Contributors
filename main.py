@@ -4,7 +4,7 @@ import base64
 
 
 def getInput(input_name):
-    return os.environ[input_name]
+    return os.environ['INPUT_{}'.format(input_name)]
 
 
 def formatContributors(repo, columnRow, width, font,
