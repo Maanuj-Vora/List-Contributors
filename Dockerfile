@@ -6,9 +6,8 @@ RUN pip install --target=/app requests
 
 FROM gcr.io/distroless/python3-debian10
 COPY --from=builder /app /app
+COPY requirements.txt /app/requirements.txt
 WORKDIR /app
+RUN pip install --user -r requirements.txt
 ENV PYTHONPATH /app
-RUN apk add --update python py-pip 
-RUN pip install --upgrade pip
-RUN pip install -r app/requirements.txt
 CMD ["/app/main.py"]
