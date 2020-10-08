@@ -31,25 +31,7 @@ A Github Action that will write out the contributors in a repository to a specif
 ### Contributors
 <html><table><tr><td align="center"><a href=https://github.com/apps/github-actions><img src=https://avatars2.githubusercontent.com/in/15368?v=4 width="50;" alt=apps/github-actions/><br /><sub style="font-size:14px"><b>apps/github-actions</b></sub></a></td><td align="center"><a href=https://github.com/Maanuj-Vora><img src=https://avatars1.githubusercontent.com/u/31610859?v=4 width="50;" alt=Maanuj Vora/><br /><sub style="font-size:14px"><b>Maanuj Vora</b></sub></a></td></tr></table></html>
 
----
-
-### Example
-
-```
-name: Contributing to the Contributors
-on: [push]
-jobs:
-	build:
-		name: Action
-		runs-on: ubuntu-latest
-		steps:
-			- uses: actions/checkout@v2
-			- uses: Maanuj-Vora/List-Contributors@0.1.6
-			with:
-				REPO_NAME: '${{github.repository}}'
-				ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-				CONTRIBUTOR: '# Contrib'
-				ENDCONTRIBUTOR: '---'
+---'
 				FILEPATH: '/README.md'
 				COLUMN_PER_ROW: '4'
 				IMG_WIDTH: '50'
