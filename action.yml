@@ -26,7 +26,7 @@ inputs:
     description: "Font size of name"
     required: false
     default: '14'
-  PATH:
+  FILEPATH:
     description: "Path to the file"
     required: false
     default: '/README.md'
