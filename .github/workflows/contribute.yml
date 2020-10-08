@@ -20,12 +20,12 @@ jobs:
       - name: Updating README.md
         run: python main.py
         env:
-          REPO_NAME: '${{github.repository}}'
-          ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          CONTRIBUTOR: '### Contributors'
-          ENDCONTRIBUTOR: '---'
-          FILEPATH: '/README.md'
-          COLUMN_PER_ROW: '4'
-          IMG_WIDTH: '50'
-          FONT_SIZE: '14'
-          COMMIT_MESSAGE: 'Contributed to the README.md'
+          INPUT_REPO_NAME: '${{github.repository}}'
+          INPUT_ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          INPUT_CONTRIBUTOR: '### Contributors'
+          INPUT_ENDCONTRIBUTOR: '---'
+          INPUT_FILEPATH: '/README.md'
+          INPUT_COLUMN_PER_ROW: '4'
+          INPUT_IMG_WIDTH: '50'
+          INPUT_FONT_SIZE: '14'
+          INPUT_COMMIT_MESSAGE: 'Contributed to the README.md'
