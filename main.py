@@ -4,7 +4,7 @@ import base64
 
 
 def getInput(input_name):
-    return str(os.environ.get('{}'.format(input_name).upper())).strip()
+    return os.environ[input_name]
 
 
 def formatContributors(repo, columnRow, width, font,
@@ -44,13 +44,12 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
 accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput(
     'REPO_NAME'), getInput('CONTRIBUTOR') + '\n', getInput('ENDCONTRIBUTOR'), getInput('FILEPATH'), getInput('COMMIT_MESSAGE')
 
-COLUMN_PER_ROW = int(float(getInput('COLUMN_PER_ROW')))
+COLUMN_PER_ROW = int(getInput('COLUMN_PER_ROW'))
+IMG_WIDTH = int(getInput('IMG_WIDTH'))
+FONT_SIZE = int(getInput('FONT_SIZE'))
 
-IMG_WIDTH = int(float(getInput('IMG_WIDTH')))
-
-FONT_SIZE = int(float(getInput('FONT_SIZE')))
-
-repo = Github(accessToken).get_repo(repoName)
+github = Github(accessToken)
+repo = github.get_repo(repoName)
 
 writeRepo(repo, formatContributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
                                    FONT_SIZE, '<html><table><tr>', '</tr></table></html>'), PATH, COMMIT_MESSAGE,

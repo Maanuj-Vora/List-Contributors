@@ -13,7 +13,8 @@ inputs:
     required: true
   COLUMN_PER_ROW:
     description: "Number of contributors per row"
-    required: true
+    required: false
+    default: '6'
   ACCESS_TOKEN:
     description: "Github Access Token you want to use. Just pass GITHUB_TOKEN"
     required: true
