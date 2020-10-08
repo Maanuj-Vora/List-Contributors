@@ -8,4 +8,5 @@ FROM gcr.io/distroless/python3-debian10
 COPY --from=builder /app /app
 WORKDIR /app
 ENV PYTHONPATH /app
+RUN pip install -r app/requirements.txt
 CMD ["/app/main.py"]
