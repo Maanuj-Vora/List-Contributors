@@ -41,7 +41,7 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
         raise Exception(e)
 
 
-accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE, COMMIT_MESSAGE, AVATAR_SHAPE = getInput('ACCESS_TOKEN'), getInput('REPO_NAME'), getInput(
+accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput('REPO_NAME'), getInput(
     'CONTRIBUTOR') + '\n', getInput('ENDCONTRIBUTOR'), getInput('FILEPATH'), int(getInput('COLUMN_PER_ROW')), int(getInput('IMG_WIDTH')), int(getInput('FONT_SIZE')), getInput('COMMIT_MESSAGE')
 
 repo = Github(accessToken).get_repo(repoName)
