@@ -4,7 +4,7 @@ import base64
 
 
 def getInput(input_name):
-    return str(os.environ[input_name])
+    return str(os.environ.get('{}'.format(input_name).upper())).strip()
 
 
 def formatContributors(repo, columnRow, width, font,
