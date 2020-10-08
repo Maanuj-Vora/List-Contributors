@@ -1,0 +1,9 @@
+name: 'List Contributors'
+description: 'Action that will write out the contributors in a repository to a specified markdown file
+author: "Maanuj-Vora"
+branding:
+  icon: 'code'
+  color: 'black'
+runs:
+  using: 'python 3.6'
+  main: 'main.py'
