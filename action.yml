@@ -1,6 +1,39 @@
 name: 'List Contributors'
 description: 'Action that will write out the contributors in a repository to a specified markdown file'
 author: "Maanuj-Vora"
+
+inputs:
+  REPO_NAME:
+    description: "The name of the repo: user/repo_name"
+    required: true
+  CONTRIBUTOR:
+    description: "Where you want to add contributors"
+    required: true
+  ENDCONTRIBUTOR:
+    description: "Set the ending of the contributor section"
+    required: true
+  COLUMN_PER_ROW:
+    description: "Number of contributors per row"
+    required: true
+  ACCESS_TOKEN:
+    description: "Github Access Token you want to use. Just pass GITHUB_TOKEN"
+    required: true
+  IMG_WIDTH:
+    description: "Width of img"
+    required: false
+    default: '100'
+  FONT_SIZE:
+    description: "Font size of name"
+    required: false
+    default: '14'
+  PATH:
+    description: "Path to the file"
+    required: false
+    default: '/README.md'
+  COMMIT_MESSAGE:
+    description: "Commit message"
+    required: false
+    default: 'Contributed to Contributer'
 branding:
   icon: 'code'
   color: 'gray-dark'

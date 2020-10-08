@@ -1,6 +1,11 @@
-FROM python:3.7.8-slim
+FROM python:3-slim AS builder
+ADD . /app
+WORKDIR /app
 
-COPY main.py entrypoint.sh requirements.txt /
-RUN chmod +x entrypoint.sh
-RUN chmod +x main.py
-ENTRYPOINT ["entrypoint.sh"]
+RUN pip install --target=/app requests
+
+FROM gcr.io/distroless/python3-debian10
+COPY --from=builder /app /app
+WORKDIR /app
+ENV PYTHONPATH /app
+CMD ["/cmd/main.py"]

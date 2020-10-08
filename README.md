@@ -1,5 +1,6 @@
 # List Contributors
- A Github Action that will write out the contributors in a repository to a specified markdown file
+
+A Github Action that will write out the contributors in a repository to a specified markdown file
 
 Still a WIP
 
