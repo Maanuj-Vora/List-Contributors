@@ -34,7 +34,7 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
         repo.update_file(contents.path, commitMessage, text, contents.sha)
     except IndexError:
         raise Exception("The file where contributors are trying to be written '" +
-                        path + "' does not have '" + CONTRIB + "' section or is missing " ENDCONTRIB)
+                        path + "' does not have '" + CONTRIB + "' section or is missing " + ENDCONTRIB)
     except Exception as e:
         raise Exception(e)
 
