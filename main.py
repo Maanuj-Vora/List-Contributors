@@ -27,8 +27,6 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
         '\n', '')).decode('utf-8')).split(CONTRIB)
     text_str.append((text_str[len(text_str)-1].split(ENDCONTRIB))
                     [len(text_str[len(text_str)-1].split(ENDCONTRIB))-1])
-    if len(text_str) <= 2:
-        text_str.append("")
     try:
         end = [contributorList, '\n' + text_str[1]]
         text = text_str[0] + CONTRIB + end[0] + \
@@ -36,7 +34,7 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
         repo.update_file(contents.path, commitMessage, text, contents.sha)
     except IndexError:
         raise Exception("The file where contributors are trying to be written '" +
-                        path + "' does not have '" + CONTRIB + "' section")
+                        path + "' does not have '" + CONTRIB + "' section or is missing " + ENDCONTRIB)
     except Exception as e:
         raise Exception(e)
 
