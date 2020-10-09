@@ -1,8 +1,7 @@
+
 # List Contributors
 
 A Github Action that will write out the contributors in a repository to a specified markdown file
-
-Still a WIP
 
 ---
 
@@ -13,6 +12,26 @@ Still a WIP
 ---
 
 ### Contributors
-<html><table><tr><td align="center"><a href=https://github.com/Maanuj-Vora><img src=https://avatars1.githubusercontent.com/u/31610859?v=4 width="50;" alt=Maanuj Vora/><br /><sub style="font-size:14px"><b>Maanuj Vora</b></sub></a></td><td align="center"><a href=https://github.com/apps/github-actions><img src=https://avatars2.githubusercontent.com/in/15368?v=4 width="50;" alt=apps/github-actions/><br /><sub style="font-size:14px"><b>apps/github-actions</b></sub></a></td></tr></table></html>
+<html><table><tr><td align="center"><a href=https://github.com/apps/github-actions><img src=https://avatars2.githubusercontent.com/in/15368?v=4 width="50;" alt=apps/github-actions/><br /><sub style="font-size:14px"><b>apps/github-actions</b></sub></a></td><td align="center"><a href=https://github.com/Maanuj-Vora><img src=https://avatars1.githubusercontent.com/u/31610859?v=4 width="50;" alt=Maanuj Vora/><br /><sub style="font-size:14px"><b>Maanuj Vora</b></sub></a></td></tr></table></html>
 
 ---
+
+## Setting Up The Workflow Run
+
+| Input Tag | Required | Default Value | Example |
+|--|--|--|--|
+| REPO_NAME | True | N/A | '${{github.repository}}' or Maanuj-Vora/List-Contributors |
+| ACCESS_TOKEN | True | N/A | ${{secrets.GITHUB_TOKEN}} |
+| CONTRIBUTOR | True | N/A | "### Contributors" |
+| ENDCONTRIBUTOR | True | N/A | "---" |
+| FILEPATH | False | '/README.md' | N/A |
+| COLUMN_PER_ROW | False | '6' | N/A |
+| IMG_WIDTH | False | '100' | N/A |
+| FONT_SIZE | False | '14' | N/A | 
+| COMMIT_MESSAGE | False | 'Contributed to Contributer' | N/A |
+
+---
+
+### Example
+
+An example of this workflow can be found at `example.yml`

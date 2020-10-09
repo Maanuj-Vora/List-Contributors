@@ -1,7 +1,6 @@
 name: 'List Contributors'
 description: 'Action that will write out the contributors in a repository to a specified markdown file'
 author: "Maanuj-Vora"
-
 inputs:
   REPO_NAME:
     description: "The name of the repo: user/repo_name"
@@ -14,7 +13,8 @@ inputs:
     required: true
   COLUMN_PER_ROW:
     description: "Number of contributors per row"
-    required: true
+    required: false
+    default: '6'
   ACCESS_TOKEN:
     description: "Github Access Token you want to use. Just pass GITHUB_TOKEN"
     required: true
@@ -26,7 +26,7 @@ inputs:
     description: "Font size of name"
     required: false
     default: '14'
-  PATH:
+  FILEPATH:
     description: "Path to the file"
     required: false
     default: '/README.md'

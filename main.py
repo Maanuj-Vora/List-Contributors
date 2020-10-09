@@ -4,7 +4,7 @@ import base64
 
 
 def getInput(input_name):
-    return str(os.environ.get('{}'.format(input_name).upper()))
+    return os.environ['INPUT_{}'.format(input_name)]
 
 
 def formatContributors(repo, columnRow, width, font,
@@ -41,10 +41,15 @@ def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
         raise Exception(e)
 
 
-accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COLUMN_PER_ROW, IMG_WIDTH, FONT_SIZE, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput('REPO_NAME'), getInput(
-    'CONTRIBUTOR') + '\n', getInput('ENDCONTRIBUTOR'), getInput('FILEPATH'), int(getInput('COLUMN_PER_ROW')), int(getInput('IMG_WIDTH')), int(getInput('FONT_SIZE')), getInput('COMMIT_MESSAGE')
+accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput(
+    'REPO_NAME'), getInput('CONTRIBUTOR') + '\n', getInput('ENDCONTRIBUTOR'), getInput('FILEPATH'), getInput('COMMIT_MESSAGE')
 
-repo = Github(accessToken).get_repo(repoName)
+COLUMN_PER_ROW = int(getInput('COLUMN_PER_ROW'))
+IMG_WIDTH = int(getInput('IMG_WIDTH'))
+FONT_SIZE = int(getInput('FONT_SIZE'))
+
+github = Github(accessToken)
+repo = github.get_repo(repoName)
 
 writeRepo(repo, formatContributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
                                    FONT_SIZE, '<html><table><tr>', '</tr></table></html>'), PATH, COMMIT_MESSAGE,
