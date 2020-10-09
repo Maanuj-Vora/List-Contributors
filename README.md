@@ -16,22 +16,6 @@ A Github Action that will write out the contributors in a repository to a specif
 
 ---
 
-## Setting Up The Workflow Run
-
-| Input Tag | Required | Default Value | Example |
-|--|--|--|--|
-| REPO_NAME | True | N/A | '${{github.repository}}' or Maanuj-Vora/List-Contributors |
-| ACCESS_TOKEN | True | N/A | ${{secrets.GITHUB_TOKEN}} |
-| CONTRIBUTOR | True | N/A | "### Contributors" |
-| ENDCONTRIBUTOR | True | N/A | "---" |
-| FILEPATH | False | '/README.md' | N/A |
-| COLUMN_PER_ROW | False | '6' | N/A |
-| IMG_WIDTH | False | '100' | N/A |
-| FONT_SIZE | False | '14' | N/A | 
-| COMMIT_MESSAGE | False | 'Contributed to Contributer' | N/A |
-
----
-
 ### Example
 
 An example of this workflow can be found at `example.yml`
