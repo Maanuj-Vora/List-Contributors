@@ -23,7 +23,6 @@ jobs:
           INPUT_REPO_NAME: '${{github.repository}}'
           INPUT_ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
           INPUT_CONTRIBUTOR: '### Contributors'
-          INPUT_ENDCONTRIBUTOR: '---'
           INPUT_FILEPATH: '/README.md'
           INPUT_COLUMN_PER_ROW: '4'
           INPUT_IMG_WIDTH: '50'
