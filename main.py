@@ -22,14 +22,14 @@ def formatContributors(repo, columnRow, width, font,
     return HEAD + TAIL
 
 
-def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CONTRIB, ENDCONTRIB):
+def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CONTRIB):
     contents = repo.get_contents('{}'.format(path))
     text_str = (base64.b64decode((contents.content).replace(
         '\n', '')).decode('utf-8')).split(CONTRIB)
     try:
         if re.match(htmlStart, text_str[1]):
-            end = text_str[1].split(ENDCONTRIB)
-            end[0] = end[0] + ENDCONTRIB
+            end = text_str[1].split(htmlEnd)
+            end[0] = end[0] + htmlEnd
         else:
             end = ['', '\n\n' + text_str[1]]
 
@@ -40,14 +40,13 @@ def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CO
         else:
             pass
     except IndexError:
-        raise Exception(path + "' does not have '" + CONTRIB +
-                        "' section or is missing " + ENDCONTRIB)
+        raise Exception(path + "' does not have '" + CONTRIB)
     except Exception as e:
         raise Exception(e)
 
 
-accessToken, repoName, CONTRIBUTOR, ENDCONTRIBUTOR, PATH, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput(
-    'REPO_NAME'), getInput('CONTRIBUTOR') + '\n', getInput('ENDCONTRIBUTOR'), getInput('FILEPATH'), getInput('COMMIT_MESSAGE')
+accessToken, repoName, CONTRIBUTOR, PATH, COMMIT_MESSAGE = getInput('ACCESS_TOKEN'), getInput(
+    'REPO_NAME'), getInput('CONTRIBUTOR') + '\n', getInput('FILEPATH'), getInput('COMMIT_MESSAGE')
 
 COLUMN_PER_ROW = int(getInput('COLUMN_PER_ROW'))
 IMG_WIDTH = int(getInput('IMG_WIDTH'))
@@ -61,4 +60,4 @@ htmlEnd = '</tr></table></html>'
 
 writeRepo(repo, formatContributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
                                    FONT_SIZE, htmlStart, htmlEnd), htmlStart, htmlEnd, PATH, COMMIT_MESSAGE,
-          CONTRIBUTOR, ENDCONTRIBUTOR)
+          CONTRIBUTOR)
