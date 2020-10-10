@@ -1,6 +1,7 @@
 from github import Github
 import os
 import base64
+import re
 
 
 def getInput(input_name):
@@ -21,20 +22,25 @@ def formatContributors(repo, columnRow, width, font,
     return HEAD + TAIL
 
 
-def writeRepo(repo, contributorList, path, commitMessage, CONTRIB, ENDCONTRIB):
+def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CONTRIB, ENDCONTRIB):
     contents = repo.get_contents('{}'.format(path))
-    text_str = (base64.b64decode(contents.content.replace(
+    text_str = (base64.b64decode((contents.content).replace(
         '\n', '')).decode('utf-8')).split(CONTRIB)
-    text_str.append((text_str[len(text_str)-1].split(ENDCONTRIB))
-                    [len(text_str[len(text_str)-1].split(ENDCONTRIB))-1])
     try:
-        end = [contributorList, '\n' + text_str[1]]
-        text = text_str[0] + CONTRIB + end[0] + \
-            '\n\n' + ENDCONTRIB + text_str[len(text_str)-1]
-        repo.update_file(contents.path, commitMessage, text, contents.sha)
+        if re.match(htmlStart, text_str[1]):
+            end = text_str[1].split(ENDCONTRIB)
+            end[0] = end[0] + ENDCONTRIB
+        else:
+            end = ['', '\n\n' + text_str[1]]
+        if end[0] != contributors_list:
+            end[0] = contributors_list
+            text = text_str[0] + CONTRIB + end[0] + end[1]
+            repo.update_file(contents.path, commit_message, text, contents.sha)
+        else:
+            pass
     except IndexError:
-        raise Exception("The file where contributors are trying to be written '" +
-                        path + "' does not have '" + CONTRIB + "' section or is missing " + ENDCONTRIB)
+        raise Exception(path + "' does not have '" + CONTRIB +
+                        "' section or is missing " + ENDCONTRIB)
     except Exception as e:
         raise Exception(e)
 
@@ -49,6 +55,9 @@ FONT_SIZE = int(getInput('FONT_SIZE'))
 github = Github(accessToken)
 repo = github.get_repo(repoName)
 
+htmlStart = '<html><table><tr>'
+htmlEnd = '</tr></table></html>'
+
 writeRepo(repo, formatContributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
-                                   FONT_SIZE, '<html><table><tr>', '</tr></table></html>'), PATH, COMMIT_MESSAGE,
+                                   FONT_SIZE, htmlStart, htmlEnd), htmlStart, htmlEnd, PATH, COMMIT_MESSAGE,
           CONTRIBUTOR, ENDCONTRIBUTOR)
