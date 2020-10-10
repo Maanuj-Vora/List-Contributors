@@ -1,5 +1,5 @@
-name: 'List Contributors'
-description: 'Action that will write out the contributors in a repository to a specified markdown file'
+name: "List Contributors"
+description: "Action that will write out the contributors in a repository to a specified markdown file"
 author: "Maanuj-Vora"
 inputs:
   REPO_NAME:
@@ -8,35 +8,32 @@ inputs:
   CONTRIBUTOR:
     description: "Where you want to add contributors"
     required: true
-  ENDCONTRIBUTOR:
-    description: "Set the ending of the contributor section"
-    required: true
   COLUMN_PER_ROW:
     description: "Number of contributors per row"
     required: false
-    default: '6'
+    default: "6"
   ACCESS_TOKEN:
     description: "Github Access Token you want to use. Just pass GITHUB_TOKEN"
     required: true
   IMG_WIDTH:
     description: "Width of img"
     required: false
-    default: '100'
+    default: "100"
   FONT_SIZE:
     description: "Font size of name"
     required: false
-    default: '14'
+    default: "14"
   FILEPATH:
     description: "Path to the file"
     required: false
-    default: '/README.md'
+    default: "/README.md"
   COMMIT_MESSAGE:
     description: "Commit message"
     required: false
-    default: 'Contributed to Contributer'
+    default: "Contributed to Contributer"
 branding:
-  icon: 'code'
-  color: 'gray-dark'
+  icon: "code"
+  color: "gray-dark"
 runs:
   using: "docker"
   image: "Dockerfile"
