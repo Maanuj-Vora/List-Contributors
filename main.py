@@ -32,11 +32,11 @@ def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CO
             end[0] = end[0] + ENDCONTRIB
         else:
             end = ['', '\n\n' + text_str[1]]
-            
+
         if end[0] != contributorList:
             end[0] = contributorList
             text = text_str[0] + CONTRIB + end[0] + end[1]
-            repo.update_file(contents.path, commit_message, text, contents.sha)
+            repo.update_file(contents.path, commitMessage, text, contents.sha)
         else:
             pass
     except IndexError:
