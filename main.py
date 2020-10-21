@@ -16,7 +16,7 @@ def formatContributors(repo, columnRow, width, font,
         if name == None:
             name = htmlURL[19:]
         if USER >= columnRow:
-            new_tr, HEAD, USER = '', HEAD + new_tr, 0
+            USER = 0
         HEAD += f'''<td align="center"><a href={htmlURL}><img src={avatarURL} width="{width};" alt={name}/><br /><sub style="font-size:{font}px"><b>{name}</b></sub></a></td>'''
         USER += 1
     return HEAD + TAIL
@@ -36,7 +36,7 @@ def writeRepo(repo, contributorList, htmlStart, htmlEnd, path, commitMessage, CO
         if end[0] != contributorList:
             end[0] = contributorList
             text = text_str[0] + CONTRIB + end[0] + end[1]
-            repo.update_file(contents.path, commitMessage, text, contents.sha)
+            # repo.update_file(contents.path, commitMessage, text, contents.sha)
         else:
             pass
     except IndexError:
