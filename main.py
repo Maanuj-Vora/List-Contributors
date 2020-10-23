@@ -12,6 +12,9 @@ def getInput(input_name):
 
 
 def shapeCode(shape):
+    if shape == None:
+        return ''
+    shape = shape.lower()
     if shape == 'round':
         return 'border-radius: 50%;'
     return ''
