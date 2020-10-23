@@ -5,7 +5,10 @@ import re
 
 
 def getInput(input_name):
-    return os.environ['INPUT_{}'.format(input_name)]
+    try:
+        return os.environ['INPUT_{}'.format(input_name)]
+    except
+        return None
 
 
 def shapeCode(shape):
