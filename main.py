@@ -8,7 +8,13 @@ def getInput(input_name):
     return os.environ['INPUT_{}'.format(input_name)]
 
 
-def formatContributors(repo, columnRow, width, font,
+def shapeCode(shape):
+    if shape == 'round':
+        return 'border-radius: 50%;'
+    return ''
+
+
+def formatContributors(repo, columnRow, width, shape, font,
                        headFormat, tailFormat):
     USER, HEAD, TAIL, contributors = 0, headFormat, tailFormat, repo.get_contributors()
     for contributor in contributors:
@@ -16,8 +22,8 @@ def formatContributors(repo, columnRow, width, font,
         if name == None:
             name = htmlURL[19:]
         if USER >= columnRow:
-            new_tr, HEAD, USER = '', HEAD + new_tr, 0
-        HEAD += f'''<td align="center"><a href={htmlURL}><img src={avatarURL} width="{width};" alt={name}/><br /><sub style="font-size:{font}px"><b>{name}</b></sub></a></td>'''
+            USER = 0
+        HEAD += f'''<td align="center"><a href={htmlURL}><img src={avatarURL} width="{width};" style="{shapeCode(shape)}" alt={name}/><br /><sub style="font-size:{font}px"><b>{name}</b></sub></a></td>'''
         USER += 1
     return HEAD + TAIL
 
@@ -51,6 +57,7 @@ accessToken, repoName, CONTRIBUTOR, PATH, COMMIT_MESSAGE = getInput('ACCESS_TOKE
 COLUMN_PER_ROW = int(getInput('COLUMN_PER_ROW'))
 IMG_WIDTH = int(getInput('IMG_WIDTH'))
 FONT_SIZE = int(getInput('FONT_SIZE'))
+SHAPE = getInput('SHAPE')
 
 github = Github(accessToken)
 repo = github.get_repo(repoName)
@@ -58,6 +65,6 @@ repo = github.get_repo(repoName)
 htmlStart = '<html><table><tr>'
 htmlEnd = '</tr></table></html>'
 
-writeRepo(repo, formatContributors(repo, COLUMN_PER_ROW, IMG_WIDTH,
-                                   FONT_SIZE, htmlStart, htmlEnd), htmlStart, htmlEnd, PATH, COMMIT_MESSAGE,
-          CONTRIBUTOR)
+writeRepo(repo=repo, contributorList=formatContributors(repo=repo, columnRow=COLUMN_PER_ROW, width=IMG_WIDTH, shape=SHAPE,
+                                                        font=FONT_SIZE, headFormat=htmlStart, tailFormat=htmlEnd), htmlStart=htmlStart, htmlEnd=htmlEnd, path=PATH, commitMessage=COMMIT_MESSAGE,
+          CONTRIB=CONTRIBUTOR)
