@@ -28,4 +28,4 @@ jobs:
           INPUT_IMG_WIDTH: '50'
           INPUT_FONT_SIZE: '14'
           INPUT_COMMIT_MESSAGE: 'Contributed to the README.md'
-          SHAPE: 'RoUnD'
+          INPUT_SHAPE: 'round'
