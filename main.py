@@ -16,7 +16,7 @@ def shapeCode(shape):
         return ''
     shape = shape.lower()
     if shape == 'round':
-        return 'border-radius: 50%;'
+        return 'border-radius:50%;overflow:hidden;'
     return ''
 
 
