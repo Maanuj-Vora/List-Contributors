@@ -17,7 +17,7 @@ def formatContributors(repo, columnRow, width, font,
             name = htmlURL[19:]
         if USER >= columnRow:
             USER = 0
-        HEAD += f'''<td align="center"><a href={htmlURL}><img src={avatarURL} width="{width};" alt={name}/><br /><sub style="font-size:{font}px"><b>{name}</b></sub></a></td>'''
+        HEAD += f'''<td align="center"><a href="{htmlURL}"><img src="{avatarURL}" width="{width}" alt="{name}"/><br /><sub style="font-size:{font}px"><b>{name}</b></sub></a></td>'''
         USER += 1
     return HEAD + TAIL
 
